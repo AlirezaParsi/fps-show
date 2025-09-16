@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">FPS Monitor</string>
+    <string name="close">Close</string>
+    <string name="support_fps_mo">FPS Support: </string>
+    <string name="Unsupport_reason">If not supported, your device may not expose FPS data or root is not granted.</string>
+    <string name="show_floatingwindow">Show FPS</string>
+    <string name="settings">Settings</string>
+    <string name="visit_github">Visit GitHub</string>
+    <string name="skip_first_screen_str">Skip First Screen</string>
+    <string name="skip_first_screen_str2">This will skip the main screen and directly show the floating window (if root is granted).</string>
+    <string name="skip_first_screen_str_disabled">Skip first screen disabled</string>
+    <string name="please_close_app_first">Please close the floating window first!</string>
+    <string name="refresh_interval">Refresh Interval (ms)</string>
+    <string name="interval_notice">Lower intervals may increase CPU usage.</string>
+    <string name="size_multiple">Text Size Multiplier</string>
+    <string name="default_value">Default</string>
+    <string name="moni_ctl">Monitor Control</string>
+    <string name="show_fps">Show FPS</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="notice">Notice</string>
+</resources>
