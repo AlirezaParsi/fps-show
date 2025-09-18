@@ -11,6 +11,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        namespace "com.example.fpsmonitor"  // اضافه کردن namespace
     }
     buildTypes {
         release {
@@ -18,7 +19,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    // تعریف externalNativeBuild داخل android {}
     externalNativeBuild {
         ndkBuild {
             path 'src/main/jni/Android.mk'
@@ -31,7 +31,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
 }
 
-// حذف externalNativeBuild جداگانه و اضافه کردن repositories
 repositories {
     google()
     mavenCentral()
