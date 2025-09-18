@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android' version '1.9.0' apply false  // نسخه مشخص برای Kotlin
 }
 
 android {
@@ -34,4 +34,10 @@ externalNativeBuild {
     ndkBuild {
         arguments "NDK_APPLICATION_MK:=src/main/jni/Application.mk"
     }
+}
+
+// تعریف مخازن
+repositories {
+    google()
+    mavenCentral()
 }
