@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    
     <application
         android:allowBackup="true"
-        android:label="FPS Monitor">
+        android:label="FPS Monitor"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        tools:targetApi="34">
+        
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <service android:name=".FloatingWindow" />
+        
     </application>
 </manifest>
