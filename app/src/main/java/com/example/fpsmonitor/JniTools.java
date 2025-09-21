@@ -8,8 +8,8 @@ public class JniTools {
     public static native String getFps();
     public static native int getCpuNum();
     
-    // متدهای جدید برای مانیتورینگ پیشرفته
-    public static native String getGpuUsage();
-    public static native String getCpuTemperature();
-    public static native String getDeviceModel();
+    // متدهای اختیاری - اگر کار نکردن کامنت کن
+    // public static native String getGpuUsage();
+    // public static native String getCpuTemperature();
+    // public static native String getDeviceModel();
 }
