@@ -13,10 +13,10 @@ import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 
-class Settings {
+public class Settings {
     private static AlertDialog dialog;
 
-    static void createDialog(Context context) {
+    public static void createDialog(Context context) {
         dialog = new AlertDialog.Builder(context)
                 .setView(settingsView(context))
                 .setTitle(R.string.settings)
@@ -36,16 +36,29 @@ class Settings {
             sw.setText(R.string.skip_first_screen_str);
             if (SharedPreferencesUtil.sharedPreferences.getBoolean(SharedPreferencesUtil.SKIP_FIRST_SCREEN, SharedPreferencesUtil.DEFAULT_SKIP_FIRST_SCREEN))
                 sw.setChecked(true);
-            sw.setOnClickListener(v -> {
-                if (sw.isChecked()) {
-                    new AlertDialog.Builder(context)
-                            .setTitle(R.string.notice)
-                            .setMessage(R.string.skip_first_screen_str2)
-                            .setPositiveButton(R.string.ok, (dialogInterface, i) -> SharedPreferencesUtil.sharedPreferences.edit().putBoolean(SharedPreferencesUtil.SKIP_FIRST_SCREEN, true).commit())
-                            .setNegativeButton(R.string.cancel, (dialogInterface, i) -> sw.setChecked(false))
-                            .create().show();
-                } else {
-                    SharedPreferencesUtil.sharedPreferences.edit().putBoolean(SharedPreferencesUtil.SKIP_FIRST_SCREEN, false).commit();
+            sw.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (sw.isChecked()) {
+                        new AlertDialog.Builder(context)
+                                .setTitle(R.string.notice)
+                                .setMessage(R.string.skip_first_screen_str2)
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        SharedPreferencesUtil.sharedPreferences.edit().putBoolean(SharedPreferencesUtil.SKIP_FIRST_SCREEN, true).commit();
+                                    }
+                                })
+                                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        sw.setChecked(false);
+                                    }
+                                })
+                                .create().show();
+                    } else {
+                        SharedPreferencesUtil.sharedPreferences.edit().putBoolean(SharedPreferencesUtil.SKIP_FIRST_SCREEN, false).commit();
+                    }
                 }
             });
         }
@@ -58,7 +71,7 @@ class Settings {
             line.addView(textView);
             textView.setText(R.string.refresh_interval);
 
-            EditText editText = new EditText(context);
+            final EditText editText = new EditText(context);
             line.addView(editText);
             editText.setHint(R.string.default_value);
             editText.setText(SharedPreferencesUtil.sharedPreferences.getInt(SharedPreferencesUtil.REFRESHING_DELAY, SharedPreferencesUtil.DEFAULT_DELAY) + "");
@@ -92,7 +105,7 @@ class Settings {
             line.addView(textView);
             textView.setText(R.string.size_multiple);
 
-            EditText editText = new EditText(context);
+            final EditText editText = new EditText(context);
             line.addView(editText);
             editText.setHint(R.string.default_value);
             editText.setText(SharedPreferencesUtil.sharedPreferences.getFloat(SharedPreferencesUtil.SIZE_MULTIPLE, SharedPreferencesUtil.SIZE_MULTIPLE_DEFAULT) + "");
@@ -122,8 +135,11 @@ class Settings {
                 sw.setText(R.string.show_fps);
                 if (SharedPreferencesUtil.sharedPreferences.getBoolean(SharedPreferencesUtil.SHOW_FPS, SharedPreferencesUtil.SHOW_FPS_DEFAULT))
                     sw.setChecked(true);
-                sw.setOnClickListener(v -> {
-                    SharedPreferencesUtil.sharedPreferences.edit().putBoolean(SharedPreferencesUtil.SHOW_FPS, sw.isChecked()).commit();
+                sw.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SharedPreferencesUtil.sharedPreferences.edit().putBoolean(SharedPreferencesUtil.SHOW_FPS, sw.isChecked()).commit();
+                    }
                 });
             }
         }
