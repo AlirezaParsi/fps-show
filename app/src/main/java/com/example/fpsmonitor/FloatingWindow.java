@@ -114,7 +114,7 @@ public class FloatingWindow extends Service {
 
         windowManager.updateViewLayout(main, params);
         uiRefresher = new Handler(message -> {
-            if (Support.support_fps && showFpsNow) {
+            if (showFpsNow) {
                 line[0].setText("fps " + fps);
             }
             return false;
