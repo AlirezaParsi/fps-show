@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,9 @@ public class MainActivity extends Activity {
             return;
         }
 
+        // مقداردهی اولیه SharedPreferences
+        SharedPreferencesUtil.init(this);
+
         // نمایش اطلاعات ساده
         TextView tvDeviceInfo = findViewById(R.id.tvDeviceInfo);
         TextView tvFpsSupport = findViewById(R.id.tvFpsSupport);
@@ -31,13 +35,19 @@ public class MainActivity extends Activity {
         tvFpsSupport.setText("FPS Support: Checking...");
 
         Button btnShowFps = findViewById(R.id.btnShowFps);
-        btnShowFps.setOnClickListener(view -> {
-            permissionCheck();
+        btnShowFps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                permissionCheck();
+            }
         });
 
         Button btnSettings = findViewById(R.id.btnSettings);
-        btnSettings.setOnClickListener(view -> {
-            Settings.createDialog(MainActivity.this);
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Settings.createDialog(MainActivity.this);
+            }
         });
     }
 
