@@ -6,10 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +15,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // استفاده از layout جدید
+        setContentView(R.layout.activity_main);
 
         if (!FloatingWindow.doExit) {
             Toast.makeText(this, "لطفاً ابتدا پنجره شناور را ببندید", Toast.LENGTH_SHORT).show();
@@ -26,29 +23,29 @@ public class MainActivity extends Activity {
             return;
         }
 
-        // بررسی دسترسی روت
-        if (!PermissionManager.hasRootAccess()) {
-            Toast.makeText(this, "دسترسی روت لازم است!", Toast.LENGTH_LONG).show();
-            finish();
-            return;
-        }
+        // نمایش اطلاعات ساده
+        TextView tvDeviceInfo = findViewById(R.id.tvDeviceInfo);
+        TextView tvFpsSupport = findViewById(R.id.tvFpsSupport);
+        
+        tvDeviceInfo.setText("Device: " + Build.MANUFACTURER + " " + Build.MODEL);
+        tvFpsSupport.setText("FPS Support: Checking...");
 
-        // تشخیص خودکار مسیرها
-        String fpsPath = FpsPathProvider.detectFpsPath();
-        if (fpsPath == null) {
-            Toast.makeText(this, "دستگاه شما پشتیبانی نمی‌شود", Toast.LENGTH_LONG).show();
-            finish();
-            return;
-        }
+        Button btnShowFps = findViewById(R.id.btnShowFps);
+        btnShowFps.setOnClickListener(view -> {
+            permissionCheck();
+        });
 
-        // ادامه کدهای شما...
-        permissionCheck();
+        Button btnSettings = findViewById(R.id.btnSettings);
+        btnSettings.setOnClickListener(view -> {
+            Settings.createDialog(MainActivity.this);
+        });
     }
 
     void permissionCheck() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (Settings.canDrawOverlays(this)) {
                 startService(new Intent(this, FloatingWindow.class));
+                finish();
             } else {
                 try {
                     Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
@@ -60,6 +57,7 @@ public class MainActivity extends Activity {
             }
         } else {
             startService(new Intent(this, FloatingWindow.class));
+            finish();
         }
     }
 }
