@@ -2,14 +2,29 @@ package com.example.fpsmonitor;
 
 public class JniTools {
     static {
-        System.loadLibrary("tools");
+        try {
+            System.loadLibrary("tools");
+        } catch (UnsatisfiedLinkError e) {
+            // کتابخانه وجود نداره، ولی برنامه ادامه پیدا کنه
+        }
     }
     
-    public static native String getFps();
-    public static native int getCpuNum();
+    public static String getFps() {
+        try {
+            return getFpsNative();
+        } catch (UnsatisfiedLinkError e) {
+            return "N/A (No Native)";
+        }
+    }
     
-    // متدهای اختیاری - اگر کار نکردن کامنت کن
-    // public static native String getGpuUsage();
-    // public static native String getCpuTemperature();
-    // public static native String getDeviceModel();
+    public static int getCpuNum() {
+        try {
+            return getCpuNumNative();
+        } catch (UnsatisfiedLinkError e) {
+            return Runtime.getRuntime().availableProcessors();
+        }
+    }
+    
+    private static native String getFpsNative();
+    private static native int getCpuNumNative();
 }
