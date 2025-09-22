@@ -46,7 +46,9 @@ public class MainActivity extends Activity {
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Settings.createDialog(MainActivity.this);
+                // موقتاً غیرفعال کنیم
+                Toast.makeText(MainActivity.this, "تنظیمات به زودی اضافه خواهد شد", Toast.LENGTH_SHORT).show();
+                // Settings.createDialog(MainActivity.this); // کامنت کردیم
             }
         });
     }
