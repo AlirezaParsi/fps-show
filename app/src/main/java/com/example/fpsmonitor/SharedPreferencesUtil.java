@@ -19,6 +19,6 @@ public class SharedPreferencesUtil {
     static final boolean SHOW_FPS_DEFAULT = true;
 
     static void init(Context context) {
-        sharedPreferences = context.getSharedPreferences("main", 0);
+        sharedPreferences = context.getSharedPreferences("main", Context.MODE_PRIVATE);
     }
 }
