@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#121212">
+    android:background="@color/background">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="FPS Monitor Pro"
         android:textSize="24sp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"/>
 
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Device: Loading..."
-        android:textColor="#CCCCCC"
+        android:textColor="@color/white"
         android:layout_marginBottom="10dp"/>
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="FPS Support: Checking..."
-        android:textColor="#CCCCCC"
+        android:textColor="@color/white"
         android:layout_marginBottom="20dp"/>
 
     <Button
@@ -36,8 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="نمایش FPS"
-        android:background="#FF5722"
-        android:textColor="#FFFFFF"
+        android:backgroundTint="@color/primary_color"
+        android:textColor="@color/white"
         android:layout_marginBottom="10dp"/>
 
     <Button
@@ -45,8 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="تنظیمات"
-        android:background="#2196F3"
-        android:textColor="#FFFFFF"
+        android:backgroundTint="@color/accent_color"
+        android:textColor="@color/white"
         android:layout_marginBottom="10dp"/>
 
     <TextView
